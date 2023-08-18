@@ -16,6 +16,7 @@ const Chat = () => {
       const responseData = await response.json();
 
       if (Array.isArray(responseData)) {
+        console.log(responseData)
         setApiData(responseData);
       } else {
         console.error("Invalid API response format");

@@ -3,21 +3,22 @@ import "./chat.css";
 
 const Chat = () => {
   const [apiData, setApiData] = useState([]);
-  const [id, SetId] = useState("");
-
+  const [id, setId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-   
+
   useEffect(() => {
-    fetchApiData();
-    const GetId = localStorage.getItem("generatedUuid");
-    if (GetId) {
-      SetId(GetId);
+    const getIdFromLocalStorage = localStorage.getItem("generatedUuid");
+    if (getIdFromLocalStorage) {
+      setId(getIdFromLocalStorage);
+      fetchApiData(getIdFromLocalStorage); // Call fetchApiData with the ID
     } else {
       console.log("Id not in localStorage");
       alert("Could not find id");
     }
   }, []);
-  const fetchApiData = async () => {
+  // const GetId = localStorage.getItem("generatedUuid");
+  console.log(id);
+  const fetchApiData = async (id) => {
     try {
       const response = await fetch(`http://192.168.1.188:3000/${id}`);
       console.log(response);
