@@ -1,0 +1,43 @@
+.admin {
+  margin: 25px;
+  margin-inline-end: 10px;
+}
+.admin-table{
+  min-height: 40vh;
+  width: 75%;
+  margin-left: 20px;
+  /* border: 1px solid black; */
+  
+}
+.admin-tr{
+  width: 75%;
+  /* border: 1px solid black; */
+}
+.admin-prompt {
+  width: 350px;
+  min-height: 2.5vh;
+  
+}
+.add-prompt{
+    margin: 5px;
+}
+.admin-answer {
+    width: 350px;
+    min-height: 2.5vh;  
+    margin-top: 5px;
+}
+.update-btn {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+.update-prompt {
+  margin-top: 10px;
+  width: 350px;
+  min-height: 2.5vh;
+}
+.update-answer {
+  margin-top: 10px;
+  width: 350px;
+  min-height: 2.5vh;
+}

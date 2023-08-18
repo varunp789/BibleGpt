@@ -34,7 +34,7 @@ function App() {
   const fetchData = async () => {
     setIsFetching(true);
 
-    const url = `http://192.168.1.188:3000/${generatedUuid}`;
+    const url = `${process.env.REACT_APP_URL}/${generatedUuid}`;
     const requestData = {
       method: "POST",
       body: JSON.stringify({

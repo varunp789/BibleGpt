@@ -20,7 +20,7 @@ const Chat = () => {
   console.log(id);
   const fetchApiData = async (id) => {
     try {
-      const response = await fetch(`http://192.168.1.188:3000/${id}`);
+      const response = await fetch(`${process.env.REACT_APP_URL}/${id}`);
       console.log(response);
       const responseData = await response.json();
       console.log(responseData);

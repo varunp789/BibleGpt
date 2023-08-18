@@ -6,22 +6,21 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Contact from "./components/Contact/Contact";
 import About from "./components/About/About";
-// import Footer from "./components/Footer/Footer";
-// import { Skeleton } from 'antd';
+import AdminChat from "./components/Admin/AdminChat";
+import Notfound from "./components/404/Notfound";
 function App() {
   return (
     <div>
-       {/* <Skeleton active /> */}
       <Navbar />
-      
+
       <Routes>
         <Route path="/" element={<Input />}></Route>
         <Route path="/chat" element={<Chat />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/About" element={<About />}></Route>
-        <Route path="*" element={<div>404 || Content Not Found</div>}></Route>
+        <Route path="/admin" element={<AdminChat />}></Route>
+        <Route path="*" element={<Notfound/>}></Route>
       </Routes>
-      {/* <Footer/> */}
     </div>
   );
 }
