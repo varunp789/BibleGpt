@@ -1,0 +1,16 @@
+
+.contact-main {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  height: 60%;
+  /* background-color: #e0f2ff; */
+}
+.contact {
+  /* border: 1px solid black; */
+  width: 50%;
+  justify-content: center;
+  height: 80%;
+  padding-top: 15px;
+  /* background-color: rgb(123, 133, 143); */
+}

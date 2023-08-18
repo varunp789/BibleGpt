@@ -1,0 +1,9 @@
+.footer-main{
+    height: 7vh;
+    background-color: #4c7bad;
+    display: flex;
+    /* border-top: 1px solid black; */
+    box-shadow: rgba(15, 15, 15, 0.56) 0px 10px 30px 2px;
+    /* position:absolute; */
+
+}

@@ -1,0 +1,177 @@
+/* Overall container */
+/* .chat-container-wrapper{
+  display: flex;
+  justify-content: flex-start; 
+  /* overflow: auto;  */
+  /* height: 750px; */
+/* }  */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  gap: 10px;
+  width: 40%;
+  margin: 0 200px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  box-shadow: rgba(15, 15, 15, 0.56) 0px 10px 30px 2px;
+  /* scroll-behavior: smooth; */
+  /* overflow: auto; */
+}
+h2 {
+  text-align: center;
+  color: #4c7bad;
+}
+h5{
+  text-align: center;
+  color: #21354b;
+}
+/* Individual message container */
+.message-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  font-family: "Crimson Text", serif;
+  /* overflow: auto; */
+}
+
+/* Styling for prompt */
+.prompt {
+  background-color: #f2f2f2;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  font-family: "Crimson Text", serif;
+  display: flex;
+  justify-content: flex-end;
+  position: absolute sticky;
+  /* border: 2px solid black; */
+}
+.que {
+  font-family: "Crimson Text", serif;
+  font-size: 20px;
+  margin: 10px;
+  padding: 2px;
+  /* border: 2px solid blue;  */
+}
+.user-icon {
+  /* border: 1px solid black; */
+  margin-top: 10px;
+  font-size: x-large;
+}
+/* Styling for response */
+.response {
+  background-color: #e0f2ff;
+  padding: 20px;
+  margin-bottom: 5px;
+  /* padding-bottom: 10px; */
+  border-radius: 15px;
+}
+.ans {
+  /* border: 1px solid red; */
+  max-width: 100%;
+  letter-spacing: 0.5px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  font-family: "Crimson Text", serif;
+  font-size: large;
+  /* text-align: justify; */
+}
+
+/* Input and button */
+.input-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Input field */
+.input-field {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Button */
+.chat-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4c7bad;
+  color: white;
+  cursor: pointer;
+}
+
+.chat-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+/*Delete Chat button */
+.del-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 40px;
+}
+.button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.svgIcon {
+  width: 12px;
+  transition-duration: 0.3s;
+}
+
+.svgIcon path {
+  fill: white;
+}
+
+.button:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: #007bff;
+  align-items: center;
+}
+
+.button:hover .svgIcon {
+  width: 50px;
+  transition-duration: 0.3s;
+  transform: translateY(60%);
+}
+
+.button::before {
+  position: absolute;
+  top: -20px;
+  content: "Delete";
+  color: white;
+  transition-duration: 0.3s;
+  font-size: 2px;
+}
+
+.button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: 0.3s;
+}

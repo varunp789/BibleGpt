@@ -1,0 +1,31 @@
+.chat-main {
+  width: 50%;
+  max-width: 60%;
+  margin-top: 50px;
+  border: 1px solid rgb(5, 5, 5);
+  margin-left: 25%;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;  /* overflow-x: auto; */
+}
+table {
+  /* border: 2px solid lightblue; */
+  border-collapse: collapse;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+}
+th {
+  /* border: 1px solid lightblue; */
+  padding: 5px;
+  position: sticky;
+  top: 0;
+  background-color: #f2f2f2;
+  z-index: 1;
+}
+td {
+  border: 1px solid lightblue;
+  /* margin: 20px; */
+  padding: 10px;
+}
