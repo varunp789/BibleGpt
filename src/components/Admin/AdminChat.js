@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./admin.css";
-import { Button, Modal, Popconfirm } from "antd";
+import { Button, Modal, Popconfirm, Input } from "antd";
 import { toast } from "react-toastify";
+import {  useNavigate } from "react-router-dom";
 
 const AdminChat = () => {
   const [adminData, setAdminData] = useState([]);
@@ -14,6 +15,7 @@ const AdminChat = () => {
   const [updatedPrompt, setUpdatedPrompt] = useState("");
   const [updatedAnswer, setUpdatedAnswer] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const fetchAdminData = async () => {
     try {
@@ -21,9 +23,9 @@ const AdminChat = () => {
       const resData = await res.json();
       console.log("hello", resData);
       // if (Array.isArray(resData)) {
-        setAdminData(resData);
+      setAdminData(resData);
       // }else{
-        // console.log("invalid json in admin chat")
+      // console.log("invalid json in admin chat")
       // }
     } catch (error) {
       console.error("Error fetching admin data:", error);
@@ -37,8 +39,8 @@ const AdminChat = () => {
     const reqData = {
       method: "POST",
       body: JSON.stringify({
-        question: addAnswer,
-        answer: addPrompt,
+        question: addPrompt,
+        answer: addAnswer,
       }),
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
@@ -57,7 +59,7 @@ const AdminChat = () => {
     setAddPrompt("");
     setaddAnswer("");
     setState(!state);
-    toast.success("added successfully")
+    toast.success("added successfully");
   };
 
   const deletePrompt = async (id) => {
@@ -73,7 +75,7 @@ const AdminChat = () => {
         console.log("error");
         setDeleting(false);
         setState(!state);
-        toast.info("Deleted successfully")
+        toast.info("Deleted successfully");
       }
     } catch (error) {
       console.error("Error deleting prompt:", error);
@@ -108,7 +110,7 @@ const AdminChat = () => {
       setUpdatedPrompt("");
       setUpdatedAnswer("");
       setState(!state);
-      toast.success("Prompt updated successfully")
+      toast.success("Prompt updated successfully");
     }
     setIsModalOpen(false);
   };
@@ -125,11 +127,14 @@ const AdminChat = () => {
     console.log("call");
     fetchAdminData();
   }, [state]);
+  const handlechat = () => {
+    navigate('/about')
+  }
 
   return (
     <div>
       <div className="admin">
-        <input
+        <Input
           type="text"
           className="admin-prompt"
           value={addPrompt}
@@ -137,7 +142,7 @@ const AdminChat = () => {
           onChange={(e) => setAddPrompt(e.target.value)}
         />
         <br />
-        <input
+        <Input
           type="text"
           className="admin-answer"
           value={addAnswer}
@@ -151,12 +156,13 @@ const AdminChat = () => {
           disabled={adding}>
           {adding ? "Adding..." : "Add Prompt"}
         </Button>
+
+        <Button onClick={handlechat}>All Users Chat History</Button>
       </div>
       <div>
         {/* {adminData.map((entry)=>(
           <div key={entry.u_id}> */}
 
-          
         <table className="admin-table">
           <thead>
             <tr className="admin-tr">

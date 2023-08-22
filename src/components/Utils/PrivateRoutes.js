@@ -1,7 +1,7 @@
 import { Outlet, Navigate } from 'react-router-dom'
 
 const PrivateRoutes = () => {
-    let auth = localStorage.getItem("logging") === "true";
+    let auth = localStorage.getItem("isLogging") === "true";
     return(
         auth ? <Outlet/> : <Navigate to="/login"/>
     )

@@ -7,10 +7,12 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
+  
   // const [error, setError] = useState(null);
   const [addLoginemail, setaddLoginEmail] = useState("");
   const [addLoginpassword, setAddLoginPassword] = useState("");
   const navigate = useNavigate();
+
   // console.log(addLoginpassword)
   // User Login info
   const handleSubmit = async () => {
@@ -33,7 +35,7 @@ const App = () => {
       // toast.success(messages);
       if (res.ok) {
         toast.success("Login successful");
-        localStorage.setItem("logging", true);
+        localStorage.setItem("isLogging", true);
         navigate("/admin");
       } else {
         toast.error("Login failed");

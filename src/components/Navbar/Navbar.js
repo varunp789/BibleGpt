@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 const Navbar = () => {
   const handlelogout = () => {
-    localStorage.removeItem("logging");
+    localStorage.removeItem("isLogging");
     window.location.reload();
     toast.success("You are Logged out");
   };
@@ -36,7 +36,7 @@ const Navbar = () => {
         </Link>
       </h4>
       <h4>
-        <Link to="/About" className="link">
+        <Link to="/About-us" className="link">
           About Us
         </Link>
       </h4>

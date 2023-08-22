@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./input.css";
 import { SendOutlined } from "@ant-design/icons";
 import { FaCross, FaUserCircle } from "react-icons/fa";
-import { Button, message, Popconfirm } from "antd";
-// import { Skeleton } from "antd";
+import { Button, message, Popconfirm, Skeleton } from "antd";
 import { v4 as uuidv4 } from "uuid";
+import { Input } from "antd";
+// import gsap from "gsap";
 
 function App() {
+  // const chatContainerRef = useRef();
   const [chatHistory, setChatHistory] = useState([]);
   const [prompt, setPrompt] = useState("");
   const [isFetching, setIsFetching] = useState(false);
@@ -29,7 +31,17 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
+    // scrollToBottom();
   }, [chatHistory]);
+
+  // const scrollToBottom = () => {
+  //   const chatContainer = chatContainerRef.current;
+  //   gsap.to(chatContainer, {
+  //     duration: 0.5,
+  //     scrollToBottom: chatContainer.scrollHeight,
+  //     ease: "power2.out",
+  //   });
+  // };
 
   const fetchData = async () => {
     setIsFetching(true);
@@ -57,6 +69,11 @@ function App() {
 
     setIsFetching(false);
     setPrompt("");
+  };
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      fetchData();
+    }
   };
   const confirm = (e) => {
     console.log(e);
@@ -97,26 +114,28 @@ function App() {
               </div>
             );
           })}
+        {isFetching && <Skeleton active />}
         </div>
-        {/* {isFetching && <Skeleton active />} */}
       </div>
-      <div className="input-container">
-        <input
-          type="text"
-          className="input-field"
-          value={prompt}
-          placeholder="Just Ask me what you want..."
-          onChange={(e) => setPrompt(e.target.value)}
-        />
-        <button
-          className="chat-button"
-          onClick={fetchData}
-          disabled={isFetching}
-          onSubmit={handleSubmit}>
-          Ask him <SendOutlined />
-        </button>
+      <div className="input-main">
+        <div className="input-container">
+          <Input
+            type="text"
+            className="input-field"
+            value={prompt}
+            placeholder="Just Ask me what you want..."
+            onChange={(e) => setPrompt(e.target.value)}
+            onKeyPress={handleKeyPress}
+          />
+          <button
+            className="chat-button"
+            onClick={fetchData}
+            disabled={isFetching}
+            onSubmit={handleSubmit}>
+            Ask him <SendOutlined />
+          </button>
+        </div>
       </div>
-
       <div className="del-btn">
         <Popconfirm
           title="Delete the task"
