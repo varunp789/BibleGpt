@@ -1,0 +1,24 @@
+.login-main{
+    display: grid;
+    place-items: center;
+    margin: 200px auto;
+    /* border: 1px solid black; */
+    width: 20%;
+    padding: 30px;
+    height: 40%;
+    background-color: whitesmoke;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+.login-form {
+  max-width: 300px;
+}
+.login-form-forgot {
+  float: right;
+}
+.ant-col-rtl .login-form-forgot {
+  float: left;
+}
+.login-form-button {
+  width: 100%;
+}

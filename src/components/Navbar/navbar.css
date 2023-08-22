@@ -6,7 +6,9 @@
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   /* position: sticky; */
-  /* position: fixed; */
+  position: fixed;
+  top: 0;
+  /* z-index: 999; */
 }
 .logo {
   display: flex;
@@ -57,4 +59,9 @@ h4:hover {
 
 h4:hover::before {
   width: 100%;
+}
+.log-out{
+  /* color:black; */
+  /* font-size: 20px; */
+  /* margin-bottom: 10px; */
 }

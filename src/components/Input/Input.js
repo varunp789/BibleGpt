@@ -4,26 +4,26 @@ import { SendOutlined } from "@ant-design/icons";
 import { FaCross, FaUserCircle } from "react-icons/fa";
 import { Button, message, Popconfirm } from "antd";
 // import { Skeleton } from "antd";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [chatHistory, setChatHistory] = useState([]);
   const [prompt, setPrompt] = useState("");
   const [isFetching, setIsFetching] = useState(false);
-  const [generatedUuid, setGeneratedUuid] = useState('');
+  const [generatedUuid, setGeneratedUuid] = useState("");
 
   useEffect(() => {
     const storedChatHistory = localStorage.getItem("chatHistory");
     if (storedChatHistory) {
       setChatHistory(JSON.parse(storedChatHistory));
     }
-    const storedUuid = localStorage.getItem('generatedUuid');
+    const storedUuid = localStorage.getItem("generatedUuid");
     if (storedUuid) {
       setGeneratedUuid(storedUuid);
     } else {
       const newUuid = uuidv4();
       setGeneratedUuid(newUuid);
-      localStorage.setItem('generatedUuid', newUuid); // Store the UUID in local storage
+      localStorage.setItem("generatedUuid", newUuid); // Store the UUID in local storage
     }
   }, []);
 
@@ -47,9 +47,9 @@ function App() {
 
     try {
       const response = await fetch(url, requestData);
-      console.log(response)
+      console.log(response);
       const responseData = await response.text();
-      console.log(responseData)
+      console.log(responseData);
       setChatHistory((prevHistory) => [...prevHistory, responseData]);
     } catch (error) {
       console.error("Error fetching data:", error.message);
@@ -76,7 +76,7 @@ function App() {
   return (
     <>
       <div className="chat-container">
-        <div>
+        <div className="messages">
           <h2>JustAskHim</h2>
           <h4>How can i help you via message...</h4>
           {chatHistory.map((message, index) => {
@@ -99,22 +99,22 @@ function App() {
           })}
         </div>
         {/* {isFetching && <Skeleton active />} */}
-        <div className="input-container">
-          <input
-            type="text"
-            className="input-field"
-            value={prompt}
-            placeholder="Just Ask me what you want..."
-            onChange={(e) => setPrompt(e.target.value)}
-          />
-          <button
-            className="chat-button"
-            onClick={fetchData}
-            disabled={isFetching}
-            onSubmit={handleSubmit}>
-            Ask him <SendOutlined />
-          </button>
-        </div>
+      </div>
+      <div className="input-container">
+        <input
+          type="text"
+          className="input-field"
+          value={prompt}
+          placeholder="Just Ask me what you want..."
+          onChange={(e) => setPrompt(e.target.value)}
+        />
+        <button
+          className="chat-button"
+          onClick={fetchData}
+          disabled={isFetching}
+          onSubmit={handleSubmit}>
+          Ask him <SendOutlined />
+        </button>
       </div>
 
       <div className="del-btn">

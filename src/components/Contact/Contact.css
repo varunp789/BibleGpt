@@ -1,16 +1,17 @@
-
 .contact-main {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  height: 60%;
-  /* background-color: #e0f2ff; */
+  display: grid;
+  place-items: center;
+  margin-top: 90px;
+  /* border: 1px solid black; */
+  width: 40%;
+  margin-left: 30%;
+  margin-bottom: 10px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  padding: 30px 30px 10px;
+
 }
 .contact {
-  /* border: 1px solid black; */
-  width: 50%;
-  justify-content: center;
-  height: 80%;
-  padding-top: 15px;
+  place-items: center;
+  /* padding: 15px 20px 10px; */
   /* background-color: rgb(123, 133, 143); */
 }

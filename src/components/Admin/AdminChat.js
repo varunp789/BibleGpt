@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./admin.css";
 import { Button, Modal, Popconfirm } from "antd";
+import { toast } from "react-toastify";
 
 const AdminChat = () => {
   const [adminData, setAdminData] = useState([]);
@@ -14,20 +15,21 @@ const AdminChat = () => {
   const [updatedAnswer, setUpdatedAnswer] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    fetchAdminData();
-  }, [state]);
-
   const fetchAdminData = async () => {
     try {
       const res = await fetch(`${process.env.REACT_APP_URL}/admin/all`);
       const resData = await res.json();
-      console.log(resData);
-      setAdminData(resData);
+      console.log("hello", resData);
+      // if (Array.isArray(resData)) {
+        setAdminData(resData);
+      // }else{
+        // console.log("invalid json in admin chat")
+      // }
     } catch (error) {
       console.error("Error fetching admin data:", error);
     }
   };
+  console.log(adminData);
 
   const addData = async () => {
     setAdding(true);
@@ -55,6 +57,7 @@ const AdminChat = () => {
     setAddPrompt("");
     setaddAnswer("");
     setState(!state);
+    toast.success("added successfully")
   };
 
   const deletePrompt = async (id) => {
@@ -67,9 +70,10 @@ const AdminChat = () => {
       if (res.status === 204) {
         console.log("Prompt deleted successfully");
       } else {
-        console.log("deleting...");
+        console.log("error");
         setDeleting(false);
         setState(!state);
+        toast.info("Deleted successfully")
       }
     } catch (error) {
       console.error("Error deleting prompt:", error);
@@ -104,6 +108,7 @@ const AdminChat = () => {
       setUpdatedPrompt("");
       setUpdatedAnswer("");
       setState(!state);
+      toast.success("Prompt updated successfully")
     }
     setIsModalOpen(false);
   };
@@ -115,6 +120,11 @@ const AdminChat = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    console.log("call");
+    fetchAdminData();
+  }, [state]);
 
   return (
     <div>
@@ -143,6 +153,10 @@ const AdminChat = () => {
         </Button>
       </div>
       <div>
+        {/* {adminData.map((entry)=>(
+          <div key={entry.u_id}> */}
+
+          
         <table className="admin-table">
           <thead>
             <tr className="admin-tr">
@@ -206,6 +220,8 @@ const AdminChat = () => {
             ))}
           </tbody>
         </table>
+        {/* </div> */}
+        {/* ))} */}
       </div>
     </div>
   );

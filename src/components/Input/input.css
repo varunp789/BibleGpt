@@ -1,39 +1,50 @@
-/* Overall container */
-/* .chat-container-wrapper{
-  display: flex;
-  justify-content: flex-start; 
-  /* overflow: auto;  */
-  /* height: 750px; */
-/* }  */
+
 .chat-container {
   display: flex;
+  justify-items: center;
   flex-direction: column;
-  /* justify-content: center; */
   gap: 10px;
-  width: 40%;
-  margin: 0 200px;
+  width: 50%;
+  margin: 0px auto;
   padding: 20px;
   border-radius: 5px;
   background-color: #f9f9f9;
-  margin-top: 50px;
+  margin-top: 90px;
   margin-bottom: 25px;
-  box-shadow: rgba(15, 15, 15, 0.56) 0px 10px 30px 2px;
-  /* scroll-behavior: smooth; */
-  /* overflow: auto; */
+  /* box-shadow: rgba(15, 15, 15, 0.56) 0px 5px 15px 1px; */
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  /* scroll-behavior: smooth;
+  overflow: auto; */
+  height: 70vh;
+  /* overflow: hidden; */
+  /* display: none; */
+}
+
+.messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  /* max-height: 80vh; */
+  padding: 10px;
+}
+.messages::-webkit-scrollbar{
+  display: none;
 }
 h2 {
   text-align: center;
   color: #4c7bad;
 }
-h5{
+h5 {
   text-align: center;
   color: #21354b;
 }
 /* Individual message container */
 .message-container {
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  gap: 5px;
+  /* gap: 5px; */
   width: 100%;
   font-family: "Crimson Text", serif;
   /* overflow: auto; */
@@ -41,10 +52,10 @@ h5{
 
 /* Styling for prompt */
 .prompt {
-  background-color: #f2f2f2;
+ 
   padding: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  /* margin-top: 5px; */
+  margin-bottom: -30px;
   border-radius: 15px;
   font-family: "Crimson Text", serif;
   display: flex;
@@ -54,9 +65,14 @@ h5{
 }
 .que {
   font-family: "Crimson Text", serif;
-  font-size: 20px;
-  margin: 10px;
-  padding: 2px;
+  background-color: #f2f2f2;
+  font-size: large;
+  margin: 5px;
+  padding: 20px;
+  border-radius: 10px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
   /* border: 2px solid blue;  */
 }
 .user-icon {
@@ -64,9 +80,14 @@ h5{
   margin-top: 10px;
   font-size: x-large;
 }
+.cross-icon{
+  margin-top: 0px;
+  font-size: 10px;
+  border: 1px solid black;
+}
 /* Styling for response */
 .response {
-  background-color: #e0f2ff;
+ 
   padding: 20px;
   margin-bottom: 5px;
   /* padding-bottom: 10px; */
@@ -76,6 +97,9 @@ h5{
   /* border: 1px solid red; */
   max-width: 100%;
   letter-spacing: 0.5px;
+  background-color: #e0f2ff;
+  border-radius: 15px;
+  padding: 20px;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
@@ -87,17 +111,31 @@ h5{
 /* Input and button */
 .input-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 29rem;
+
   gap: 10px;
+  background-color: #f9f9f9;
+
   margin-top: 10px;
+  width: 50%;
+  /* position: fixed; */
+  padding: 15px; /* Add some padding to the input section */
+  /* border-top: 1px solid #ccc;  */
+  /* background-color: white;    */
+  /* box-shadow: rgba(15, 15, 15, 0.56) 0px 5px 15px 1px; */
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 /* Input field */
 .input-field {
   flex: 1;
-  padding: 8px;
+  padding: 9px;
   border: 1px solid black;
   border-radius: 5px;
   font-size: 14px;
+  /* position: fixed; */
 }
 
 /* Button */
@@ -117,7 +155,7 @@ h5{
 /*Delete Chat button */
 .del-btn {
   display: flex;
-  justify-content: flex-end;
+  justify-content: left;
   margin-right: 40px;
 }
 .button {

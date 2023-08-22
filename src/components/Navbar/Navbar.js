@@ -2,8 +2,15 @@ import React from "react";
 import "./navbar.css";
 import "../../App.css";
 import { Link } from "react-router-dom";
+import { LogoutOutlined } from "@ant-design/icons";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+  const handlelogout = () => {
+    localStorage.removeItem("logging");
+    window.location.reload();
+    toast.success("You are Logged out");
+  };
   return (
     <div className="nav-main">
       <div className="logo">
@@ -32,6 +39,11 @@ const Navbar = () => {
         <Link to="/About" className="link">
           About Us
         </Link>
+      </h4>
+      <h4>
+        <button onClick={handlelogout} title="Log-out">
+          <LogoutOutlined className="log-out" />
+        </button>
       </h4>
     </div>
   );
