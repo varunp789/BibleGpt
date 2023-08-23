@@ -1,20 +1,30 @@
 .chat-main {
   width: 50%;
   max-width: 60%;
-  margin-top: 50px;
-  border: 1px solid rgb(5, 5, 5);
+  margin-top: 90px;
+  border: 1px solid rgb(41, 99, 109);
   margin-left: 25%;
   margin-bottom: 20px;
-  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;  /* overflow-x: auto; */
+  height: 85vh;
+  overflow: auto;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+  /* box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px; */
+  /* overflow: hidden; */
+}
+.chat-main::-webkit-scrollbar{
+  display: none;
 }
 table {
   /* border: 2px solid lightblue; */
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
   width: 100%;
-  position: sticky;
   top: 0;
-  z-index: 1;
   background-color: white;
+  /* height: 70vh; */
+  /* overflow: auto; */
+  /* position: relative; */
+  /* z-index: 1; */
 }
 th {
   /* border: 1px solid lightblue; */
@@ -22,7 +32,7 @@ th {
   position: sticky;
   top: 0;
   background-color: #f2f2f2;
-  z-index: 1;
+  /* z-index: 1; */
 }
 td {
   border: 1px solid lightblue;

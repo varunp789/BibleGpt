@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Input, InputNumber } from "antd";
+import { Button, Form, Input } from "antd";
 import "./Contact.css";
 
 const layout = {
@@ -26,6 +26,7 @@ const onFinish = (values) => {
 
 const App = () => (
   <div className="contact-main">
+      <h1>Contact Us</h1>
     <div className="contact">
       <Form
         {...layout}
@@ -46,12 +47,7 @@ const App = () => (
           rules={[{ type: "email", required: true }]}>
           <Input />
         </Form.Item>
-        <Form.Item
-          name={["user", "age"]}
-          label="Age"
-          rules={[{ type: "number", min: 0, max: 99 ,required: true}]}>
-          <InputNumber />
-        </Form.Item>
+        
         <Form.Item
           name={["user", "Message"]}
           label="Message"

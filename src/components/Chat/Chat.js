@@ -20,7 +20,7 @@ const Chat = () => {
   console.log(id);
   const fetchApiData = async (id) => {
     try {
-      const response = await fetch(`http://192.168.1.188:3000/${id}`);
+      const response = await fetch(`${process.env.REACT_APP_URL}/${id}`);
       console.log(response);
       const responseData = await response.json();
       console.log(responseData);
@@ -48,7 +48,7 @@ const Chat = () => {
             <thead>
               <tr>
                 <th>Prompt</th>
-                <th>Prompt Time</th>
+                {/* <th>Prompt Time</th> */}
                 <th>Response</th>
               </tr>
             </thead>
@@ -56,7 +56,7 @@ const Chat = () => {
               {apiData.map((entry) => (
                 <tr key={entry.id}>
                   <td>{entry.prompt}</td>
-                  <td>{new Date(entry.prompt_time).toLocaleString()}</td>
+                  {/* <td>{new Date(entry.prompt_time).toLocaleString()}</td> */}
                   <td>{entry.response}</td>
                 </tr>
               ))}

@@ -1,52 +1,84 @@
-/* Overall container */
-/* .chat-container-wrapper{
-  display: flex;
-  justify-content: flex-start; 
-  /* overflow: auto;  */
-  /* height: 750px; */
-/* }  */
+
 .chat-container {
   display: flex;
+  justify-items: center;
   flex-direction: column;
-  /* justify-content: center; */
   gap: 10px;
-  width: 40%;
-  margin: 0 200px;
+  width: 50%;
+  margin: 0px auto;
   padding: 20px;
   border-radius: 5px;
   background-color: #f9f9f9;
-  margin-top: 50px;
+  margin-top: 90px;
   margin-bottom: 25px;
-  box-shadow: rgba(15, 15, 15, 0.56) 0px 10px 30px 2px;
-  /* scroll-behavior: smooth; */
-  /* overflow: auto; */
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  height: 70vh;
 }
+.scroll-to-bottom {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.scroll-to-bottom:hover {
+  background-color: #0056b3;
+}
+
+.messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 10px;
+  border: 0.2px solid rgb(114, 196, 250);
+}
+/* .messages::-webkit-scrollbar{
+  display: none;
+} */
+.messages::-webkit-scrollbar {
+  width: 10px;
+
+}
+.messages::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px rgb(255, 255, 255); 
+  border-radius: 10px;
+}
+.messages::-webkit-scrollbar-thumb {
+  background: #4c7bad; 
+  border-radius: 10px;
+}
+.messages::-webkit-scrollbar-thumb:hover {
+  background: #428fe7; 
+}
+
 h2 {
   text-align: center;
   color: #4c7bad;
 }
-h5{
+h5 {
   text-align: center;
   color: #21354b;
 }
-/* Individual message container */
 .message-container {
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  gap: 5px;
   width: 100%;
-  font-family: "Crimson Text", serif;
-  /* overflow: auto; */
+  font-family: 'Poppins', sans-serif;
+  font-size: large;
 }
 
-/* Styling for prompt */
 .prompt {
-  background-color: #f2f2f2;
   padding: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: -30px;
   border-radius: 15px;
   font-family: "Crimson Text", serif;
+  /* font-family: 'Poppins', sans-serif; */
   display: flex;
   justify-content: flex-end;
   position: absolute sticky;
@@ -54,9 +86,14 @@ h5{
 }
 .que {
   font-family: "Crimson Text", serif;
-  font-size: 20px;
-  margin: 10px;
-  padding: 2px;
+  background-color: #f2f2f2;
+  font-size: large;
+  margin: 5px;
+  padding: 20px;
+  border-radius: 10px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
   /* border: 2px solid blue;  */
 }
 .user-icon {
@@ -64,40 +101,63 @@ h5{
   margin-top: 10px;
   font-size: x-large;
 }
+.cross-icon{
+  /* border: 1px solid black; */
+  margin-top: 0px;
+  font-size: 10px;
+}
 /* Styling for response */
 .response {
-  background-color: #e0f2ff;
+ /* border: 1px solid gold; */
   padding: 20px;
-  margin-bottom: 5px;
-  /* padding-bottom: 10px; */
+  margin-bottom: 4px;
   border-radius: 15px;
 }
 .ans {
   /* border: 1px solid red; */
   max-width: 100%;
   letter-spacing: 0.5px;
+  background-color: #e0f2ff;
+  border-radius: 15px;
+  padding: 20px;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
   font-family: "Crimson Text", serif;
+  /* font-family: 'Poppins', sans-serif; */
   font-size: large;
-  /* text-align: justify; */
+  text-align: justify;
 }
-
+.input-main{
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid red; */
+}
 /* Input and button */
 .input-container {
   display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  border: 1px solid whitesmoke;
+  /* margin-left: 29rem; */
+
   gap: 10px;
-  margin-top: 10px;
+  background-color: #f9f9f9;
+  margin-top: 5px;
+  width: 50%;
+  padding: 15px; 
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 /* Input field */
 .input-field {
   flex: 1;
-  padding: 8px;
+  padding: 9px;
   border: 1px solid black;
   border-radius: 5px;
   font-size: 14px;
+  justify-content: center;
 }
 
 /* Button */
@@ -117,7 +177,7 @@ h5{
 /*Delete Chat button */
 .del-btn {
   display: flex;
-  justify-content: flex-end;
+  justify-content: left;
   margin-right: 40px;
 }
 .button {

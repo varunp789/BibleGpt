@@ -2,28 +2,28 @@ import React, { useState, useEffect } from "react";
 import "./input.css";
 import { SendOutlined } from "@ant-design/icons";
 import { FaCross, FaUserCircle } from "react-icons/fa";
-import { Button, message, Popconfirm } from "antd";
-// import { Skeleton } from "antd";
-import { v4 as uuidv4 } from 'uuid';
+import { Button, message, Popconfirm, Skeleton } from "antd";
+import { v4 as uuidv4 } from "uuid";
+import { Input } from "antd";
 
 function App() {
   const [chatHistory, setChatHistory] = useState([]);
   const [prompt, setPrompt] = useState("");
   const [isFetching, setIsFetching] = useState(false);
-  const [generatedUuid, setGeneratedUuid] = useState('');
+  const [generatedUuid, setGeneratedUuid] = useState("");
 
   useEffect(() => {
     const storedChatHistory = localStorage.getItem("chatHistory");
     if (storedChatHistory) {
       setChatHistory(JSON.parse(storedChatHistory));
     }
-    const storedUuid = localStorage.getItem('generatedUuid');
+    const storedUuid = localStorage.getItem("generatedUuid");
     if (storedUuid) {
       setGeneratedUuid(storedUuid);
     } else {
       const newUuid = uuidv4();
       setGeneratedUuid(newUuid);
-      localStorage.setItem('generatedUuid', newUuid); // Store the UUID in local storage
+      localStorage.setItem("generatedUuid", newUuid); // Store the UUID in local storage
     }
   }, []);
 
@@ -34,7 +34,7 @@ function App() {
   const fetchData = async () => {
     setIsFetching(true);
 
-    const url = `http://192.168.1.188:3000/${generatedUuid}`;
+    const url = `${process.env.REACT_APP_URL}/${generatedUuid}`;
     const requestData = {
       method: "POST",
       body: JSON.stringify({
@@ -47,16 +47,42 @@ function App() {
 
     try {
       const response = await fetch(url, requestData);
-      console.log(response)
-      const responseData = await response.text();
-      console.log(responseData)
-      setChatHistory((prevHistory) => [...prevHistory, responseData]);
+      if (!response.ok || !response.body) {
+        throw new Error(response.statusText);
+      }
+      console.log(response);
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      console.log(decoder)
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) {
+          break;
+        }
+
+        const decodedChunk = decoder.decode(value, { stream: true });
+        setChatHistory((prevMessages) => [...prevMessages, decodedChunk]);
+      }
+
+      // console.log(response);
+      // const responseData = await response.text();
+      // console.log(responseData);
+      //  setChatHistory((prevHistory) => [...prevHistory, responseData]);
+
     } catch (error) {
       console.error("Error fetching data:", error.message);
     }
 
     setIsFetching(false);
     setPrompt("");
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      fetchData();
+    }
   };
   const confirm = (e) => {
     console.log(e);
@@ -76,7 +102,7 @@ function App() {
   return (
     <>
       <div className="chat-container">
-        <div>
+        <div className="messages">
           <h2>JustAskHim</h2>
           <h4>How can i help you via message...</h4>
           {chatHistory.map((message, index) => {
@@ -97,15 +123,18 @@ function App() {
               </div>
             );
           })}
+          {isFetching && <Skeleton active />}
         </div>
-        {/* {isFetching && <Skeleton active />} */}
+      </div>
+      <div className="input-main">
         <div className="input-container">
-          <input
+          <Input
             type="text"
             className="input-field"
             value={prompt}
             placeholder="Just Ask me what you want..."
             onChange={(e) => setPrompt(e.target.value)}
+            onKeyPress={handleKeyPress}
           />
           <button
             className="chat-button"
@@ -116,7 +145,6 @@ function App() {
           </button>
         </div>
       </div>
-
       <div className="del-btn">
         <Popconfirm
           title="Delete the task"
