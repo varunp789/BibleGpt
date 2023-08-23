@@ -48,7 +48,7 @@ const Chat = () => {
             <thead>
               <tr>
                 <th>Prompt</th>
-                <th>Prompt Time</th>
+                {/* <th>Prompt Time</th> */}
                 <th>Response</th>
               </tr>
             </thead>
@@ -56,7 +56,7 @@ const Chat = () => {
               {apiData.map((entry) => (
                 <tr key={entry.id}>
                   <td>{entry.prompt}</td>
-                  <td>{new Date(entry.prompt_time).toLocaleString()}</td>
+                  {/* <td>{new Date(entry.prompt_time).toLocaleString()}</td> */}
                   <td>{entry.response}</td>
                 </tr>
               ))}

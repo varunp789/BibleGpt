@@ -21,13 +21,13 @@ const Navbar = () => {
         </h3>
       </div>
       <h4>
-        <Link to="/chat" className="link">
-          Chat History
+        <Link to="/" className="link">
+          Chat
         </Link>
       </h4>
       <h4>
-        <Link to="/" className="link">
-          Chat
+        <Link to="/chat" className="link">
+          History
         </Link>
       </h4>
       <h4>

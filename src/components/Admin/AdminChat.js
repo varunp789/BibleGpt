@@ -31,7 +31,7 @@ const AdminChat = () => {
       console.error("Error fetching admin data:", error);
     }
   };
-  console.log(adminData);
+  // console.log(adminData);
 
   const addData = async () => {
     setAdding(true);

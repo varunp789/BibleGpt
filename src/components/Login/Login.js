@@ -7,13 +7,10 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
-  
-  // const [error, setError] = useState(null);
   const [addLoginemail, setaddLoginEmail] = useState("");
   const [addLoginpassword, setAddLoginPassword] = useState("");
   const navigate = useNavigate();
 
-  // console.log(addLoginpassword)
   // User Login info
   const handleSubmit = async () => {
     const API = `${process.env.REACT_APP_URL}/admin/login`;
@@ -32,7 +29,6 @@ const App = () => {
       const res = await fetch(API, reqData);
       const messages = await res.text();
       console.log(messages);
-      // toast.success(messages);
       if (res.ok) {
         toast.success("Login successful");
         localStorage.setItem("isLogging", true);
@@ -59,10 +55,7 @@ const App = () => {
         onFinish={handleSubmit}>
         <Form.Item
           name="Email"
-          rules={[{ required: true, message: "Please input your Username!" }]}
-          // validateStatus={error?.field === "username" ? "error" : ""}
-          // help={error?.field === "username" && error.message}
-          >
+          rules={[{ required: true, message: "Please input your Username!" }]}>
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="Email"
@@ -72,10 +65,7 @@ const App = () => {
         </Form.Item>
         <Form.Item
           name="password"
-          rules={[{ required: true, message: "Please input your Password!" }]}
-          // validateStatus={error?.field === "password" ? "error" : ""}
-          // help={error?.field === "password" && error.message}
-          >
+          rules={[{ required: true, message: "Please input your Password!" }]}>
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             value={addLoginpassword}

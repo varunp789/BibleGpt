@@ -1,7 +1,7 @@
 .register-main {
+  /* border: 1px solid black; */
   display: grid;
   place-items: center;
-  /* border: 1px solid black; */
   width: 20%;
   height: 70%;
   margin: 90px auto;

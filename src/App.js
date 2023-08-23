@@ -41,7 +41,6 @@ function App() {
           <Route path="/About" element={<About />}></Route>
         </Route>
         <Route path="/register" element={<Register />}></Route>
-
         <Route path="*" element={<Notfound />}></Route>
       </Routes>
     </div>

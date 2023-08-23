@@ -31,17 +31,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
-    // scrollToBottom();
   }, [chatHistory]);
-
-  // const scrollToBottom = () => {
-  //   const chatContainer = chatContainerRef.current;
-  //   gsap.to(chatContainer, {
-  //     duration: 0.5,
-  //     scrollToBottom: chatContainer.scrollHeight,
-  //     ease: "power2.out",
-  //   });
-  // };
 
   const fetchData = async () => {
     setIsFetching(true);
@@ -59,10 +49,30 @@ function App() {
 
     try {
       const response = await fetch(url, requestData);
+      if (!response.ok || !response.body) {
+        throw new Error(response.statusText);
+      }
       console.log(response);
-      const responseData = await response.text();
-      console.log(responseData);
-      setChatHistory((prevHistory) => [...prevHistory, responseData]);
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      console.log(decoder)
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) {
+          break;
+        }
+
+        const decodedChunk = decoder.decode(value, { stream: true });
+        setChatHistory((prevMessages) => [...prevMessages, decodedChunk]);
+      }
+
+      // console.log(response);
+      // const responseData = await response.text();
+      // console.log(responseData);
+      //  setChatHistory((prevHistory) => [...prevHistory, responseData]);
+
     } catch (error) {
       console.error("Error fetching data:", error.message);
     }
@@ -70,6 +80,7 @@ function App() {
     setIsFetching(false);
     setPrompt("");
   };
+
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       fetchData();
@@ -114,7 +125,7 @@ function App() {
               </div>
             );
           })}
-        {isFetching && <Skeleton active />}
+          {isFetching && <Skeleton active />}
         </div>
       </div>
       <div className="input-main">
