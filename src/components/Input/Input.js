@@ -5,10 +5,8 @@ import { FaCross, FaUserCircle } from "react-icons/fa";
 import { Button, message, Popconfirm, Skeleton } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import { Input } from "antd";
-// import gsap from "gsap";
 
 function App() {
-  // const chatContainerRef = useRef();
   const [chatHistory, setChatHistory] = useState([]);
   const [prompt, setPrompt] = useState("");
   const [isFetching, setIsFetching] = useState(false);

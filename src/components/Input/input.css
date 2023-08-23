@@ -12,11 +12,7 @@
   margin-top: 90px;
   margin-bottom: 25px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  /* scroll-behavior: smooth;
-  overflow: auto; */
   height: 70vh;
-  /* overflow: hidden; */
-  /* display: none; */
 }
 .scroll-to-bottom {
   position: absolute;
@@ -51,12 +47,10 @@
 .messages::-webkit-scrollbar-track {
   box-shadow: inset 0 0 2px rgb(255, 255, 255); 
   border-radius: 10px;
-  /* height: 5px; */
 }
 .messages::-webkit-scrollbar-thumb {
   background: #4c7bad; 
   border-radius: 10px;
-  /* min-height: 1px; */
 }
 .messages::-webkit-scrollbar-thumb:hover {
   background: #428fe7; 
@@ -71,17 +65,14 @@ h5 {
   color: #21354b;
 }
 .message-container {
-  /* border: 1px solid blue; */
   display: flex;
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  /* font-family: "Crimson Text", serif; */
   font-family: 'Poppins', sans-serif;
   font-size: large;
 }
 
-/* Styling for prompt */
 .prompt {
   padding: 5px;
   margin-bottom: -30px;
@@ -95,7 +86,6 @@ h5 {
 }
 .que {
   font-family: "Crimson Text", serif;
-  /* font-family: 'Poppins', sans-serif; */
   background-color: #f2f2f2;
   font-size: large;
   margin: 5px;
