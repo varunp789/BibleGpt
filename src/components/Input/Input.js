@@ -47,29 +47,11 @@ function App() {
 
     try {
       const response = await fetch(url, requestData);
-      if (!response.ok || !response.body) {
-        throw new Error(response.statusText);
-      }
       console.log(response);
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      console.log(decoder)
-
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) {
-          break;
-        }
-
-        const decodedChunk = decoder.decode(value, { stream: true });
-        setChatHistory((prevMessages) => [...prevMessages, decodedChunk]);
-      }
-
-      // console.log(response);
-      // const responseData = await response.text();
-      // console.log(responseData);
-      //  setChatHistory((prevHistory) => [...prevHistory, responseData]);
+      const responseData = await response.text();
+      console.log(responseData);
+       setChatHistory((prevHistory) => [...prevHistory, responseData]);
+   
 
     } catch (error) {
       console.error("Error fetching data:", error.message);
