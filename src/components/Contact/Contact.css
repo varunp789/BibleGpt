@@ -1,3 +1,9 @@
+.contact-container {
+/* background-color: azure; */
+height: 90vh;
+/* background-image: url(/home/creole/Downloads/3969587.jpg); */
+
+}
 .contact-main {
   display: grid;
   place-items: center;
@@ -6,9 +12,9 @@
   width: 40%;
   margin-left: 30%;
   margin-bottom: 10px;
-  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   padding: 30px 30px 10px;
-
 }
 .contact {
   place-items: center;

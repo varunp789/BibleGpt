@@ -25,41 +25,43 @@ const onFinish = (values) => {
 };
 
 const App = () => (
-  <div className="contact-main">
+  <div className="contact-container">
+    <div className="contact-main">
       <h1>Contact Us</h1>
-    <div className="contact">
-      <Form
-        {...layout}
-        name="nest-messages"
-        onFinish={onFinish}
-        //   className="contact-main"
-        style={{ maxWidth: 600 }}
-        validateMessages={validateMessages}>
-        <Form.Item
-          name={["user", "name"]}
-          label="Name"
-          rules={[{ required: true }]}>
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name={["user", "email"]}
-          label="Email"
-          rules={[{ type: "email", required: true }]}>
-          <Input />
-        </Form.Item>
-        
-        <Form.Item
-          name={["user", "Message"]}
-          label="Message"
-          rules={[{ required: true }]}>
-          <Input.TextArea />
-        </Form.Item>
-        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
+      <div className="contact">
+        <Form
+          {...layout}
+          name="nest-messages"
+          onFinish={onFinish}
+          //   className="contact-main"
+          style={{ maxWidth: 600 }}
+          validateMessages={validateMessages}>
+          <Form.Item
+            name={["user", "name"]}
+            label="Name"
+            rules={[{ required: true }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name={["user", "email"]}
+            label="Email"
+            rules={[{ type: "email", required: true }]}>
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            name={["user", "Message"]}
+            label="Message"
+            rules={[{ required: true }]}>
+            <Input.TextArea />
+          </Form.Item>
+          <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   </div>
 );
