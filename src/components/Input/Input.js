@@ -5,12 +5,29 @@ import { FaCross, FaUserCircle } from "react-icons/fa";
 import { Button, message, Popconfirm, Skeleton } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import { Input } from "antd";
+import {  Col, Row } from "antd";
 
 function App() {
   const [chatHistory, setChatHistory] = useState([]);
   const [prompt, setPrompt] = useState("");
   const [isFetching, setIsFetching] = useState(false);
   const [generatedUuid, setGeneratedUuid] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  
+  const predefinedSuggestions = [
+    "How do scholars approach interpreting prophetic passages in the Bible ?",
+    "What does the Bible say about helping the poor and needy ? ",
+    "How does the Bible address issues of social justice? ",
+  ];
+  const generateSuggestions = (input) => {
+    const filteredSuggestions = predefinedSuggestions.filter((question) =>
+      question.toLowerCase().includes(input.toLowerCase())
+    );
+    // Limit the number of suggestions to 3
+    const limitedSuggestions = filteredSuggestions.slice(0, 3);
+    setSuggestions(limitedSuggestions);
+  };
 
   useEffect(() => {
     const storedChatHistory = localStorage.getItem("chatHistory");
@@ -35,10 +52,16 @@ function App() {
     setIsFetching(true);
 
     const url = `${process.env.REACT_APP_URL}/${generatedUuid}`;
+    // const pairsArray = chatHistory.map((message) => {
+    //   const parts = message.split("\n");
+    //   return { prompt: parts[0] };
+    // });
+  
     const requestData = {
       method: "POST",
       body: JSON.stringify({
         prompt: prompt,
+        data:[chatHistory]
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -50,9 +73,7 @@ function App() {
       console.log(response);
       const responseData = await response.text();
       console.log(responseData);
-       setChatHistory((prevHistory) => [...prevHistory, responseData]);
-   
-
+      setChatHistory((prevHistory) => [...prevHistory, responseData]);
     } catch (error) {
       console.error("Error fetching data:", error.message);
     }
@@ -88,7 +109,8 @@ function App() {
           <h2>JustAskHim</h2>
           <h4>How can i help you via message...</h4>
           {chatHistory.map((message, index) => {
-            const parts = message.split("\n");
+            const parts = message.split("\n",2);
+
             return (
               <div key={index} className="message-container">
                 <div className="prompt">
@@ -108,6 +130,20 @@ function App() {
           {isFetching && <Skeleton active />}
         </div>
       </div>
+      <Row gutter={16} className="sg-main">
+        {suggestions.map((suggestion, index) => (
+          <Col key={index} span={8} className="sg">
+            <div
+              onClick={() => {
+                setPrompt(suggestion);
+                setSuggestions([]); // Clear suggestions when a suggestion is clicked
+              }}
+              className="suggestion-card">
+              {suggestion}
+            </div>
+          </Col>
+        ))}
+      </Row>
       <div className="input-main">
         <div className="input-container">
           <Input
@@ -115,9 +151,13 @@ function App() {
             className="input-field"
             value={prompt}
             placeholder="Just Ask me what you want..."
-            onChange={(e) => setPrompt(e.target.value)}
+            onChange={(e) => {
+              setPrompt(e.target.value);
+              generateSuggestions(e.target.value);
+            }}
             onKeyPress={handleKeyPress}
           />
+
           <button
             className="chat-button"
             onClick={fetchData}
