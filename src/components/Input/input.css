@@ -1,4 +1,3 @@
-
 .chat-container {
   display: flex;
   justify-items: center;
@@ -37,23 +36,19 @@
   padding: 10px;
   border: 0.2px solid rgb(114, 196, 250);
 }
-/* .messages::-webkit-scrollbar{
-  display: none;
-} */
 .messages::-webkit-scrollbar {
   width: 10px;
-
 }
 .messages::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 2px rgb(255, 255, 255); 
+  box-shadow: inset 0 0 2px rgb(255, 255, 255);
   border-radius: 10px;
 }
 .messages::-webkit-scrollbar-thumb {
-  background: #4c7bad; 
+  background: #4c7bad;
   border-radius: 10px;
 }
 .messages::-webkit-scrollbar-thumb:hover {
-  background: #428fe7; 
+  background: #428fe7;
 }
 
 h2 {
@@ -69,7 +64,7 @@ h5 {
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: large;
 }
 
@@ -78,11 +73,9 @@ h5 {
   margin-bottom: -30px;
   border-radius: 15px;
   font-family: "Crimson Text", serif;
-  /* font-family: 'Poppins', sans-serif; */
   display: flex;
   justify-content: flex-end;
   position: absolute sticky;
-  /* border: 2px solid black; */
 }
 .que {
   font-family: "Crimson Text", serif;
@@ -94,27 +87,21 @@ h5 {
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
-  /* border: 2px solid blue;  */
 }
 .user-icon {
-  /* border: 1px solid black; */
   margin-top: 10px;
   font-size: x-large;
 }
-.cross-icon{
-  /* border: 1px solid black; */
+.cross-icon {
   margin-top: 0px;
   font-size: 10px;
 }
-/* Styling for response */
 .response {
- /* border: 1px solid gold; */
   padding: 20px;
   margin-bottom: 4px;
   border-radius: 15px;
 }
 .ans {
-  /* border: 1px solid red; */
   max-width: 100%;
   letter-spacing: 0.5px;
   background-color: #e0f2ff;
@@ -124,33 +111,28 @@ h5 {
   overflow-wrap: break-word;
   white-space: normal;
   font-family: "Crimson Text", serif;
-  /* font-family: 'Poppins', sans-serif; */
   font-size: large;
   text-align: justify;
 }
-.input-main{
+.input-main {
   display: flex;
   justify-content: center;
-  /* border: 1px solid red; */
 }
-/* Input and button */
 .input-container {
   display: flex;
   justify-content: center;
   justify-items: center;
   align-items: center;
   border: 1px solid whitesmoke;
-  /* margin-left: 29rem; */
 
   gap: 10px;
   background-color: #f9f9f9;
   margin-top: 5px;
   width: 50%;
-  padding: 15px; 
+  padding: 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-/* Input field */
 .input-field {
   flex: 1;
   padding: 9px;
@@ -160,7 +142,6 @@ h5 {
   justify-content: center;
 }
 
-/* Button */
 .chat-button {
   padding: 8px 12px;
   border: none;
@@ -174,7 +155,6 @@ h5 {
   background-color: #ccc;
   cursor: not-allowed;
 }
-/*Delete Chat button */
 .del-btn {
   display: flex;
   justify-content: left;
@@ -234,4 +214,23 @@ h5 {
   opacity: 1;
   transform: translateY(30px);
   transition-duration: 0.3s;
+}
+.sg-main {
+  width: 50%;
+  display: flex;
+  margin: 1px auto !important;
+  flex-wrap: wrap;
+}
+.sg {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: 6vh;
+}
+.suggestion-card {
+  height: 70% !important;
+  border: 1px solid rgb(114, 196, 250);
+  padding-top: 4px;
+  border-radius: 10px;
+  justify-content: center;
 }
