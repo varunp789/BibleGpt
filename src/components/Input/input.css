@@ -8,7 +8,7 @@
   padding: 20px;
   border-radius: 5px;
   background-color: #f9f9f9;
-  margin-top: 90px;
+  margin-top: 75px;
   margin-bottom: 25px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   height: 70vh;
@@ -82,11 +82,12 @@ h5 {
   background-color: #f2f2f2;
   font-size: large;
   margin: 5px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
+  border: 1px solid whitesmoke;
 }
 .user-icon {
   margin-top: 10px;
@@ -230,7 +231,7 @@ h5 {
 .suggestion-card {
   height: 70% !important;
   border: 1px solid rgb(114, 196, 250);
-  padding-top: 4px;
+  padding: 4px 4px 4px 4px;
   border-radius: 10px;
   justify-content: center;
 }
