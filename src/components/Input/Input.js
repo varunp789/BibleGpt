@@ -5,20 +5,20 @@ import { FaCross, FaUserCircle } from "react-icons/fa";
 import { Button, message, Popconfirm, Skeleton } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import { Input } from "antd";
-import {  Col, Row } from "antd";
+import { Col, Row } from "antd";
 
 function App() {
   const [chatHistory, setChatHistory] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [prompt, setPrompt] = useState("");
   const [isFetching, setIsFetching] = useState(false);
   const [generatedUuid, setGeneratedUuid] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
-  
   const predefinedSuggestions = [
     "How do scholars approach interpreting prophetic passages in the Bible ?",
     "What does the Bible say about helping the poor and needy ? ",
-    "How does the Bible address issues of social justice? ",
+    "How does truth and karma works? ",
   ];
   const generateSuggestions = (input) => {
     const filteredSuggestions = predefinedSuggestions.filter((question) =>
@@ -52,16 +52,12 @@ function App() {
     setIsFetching(true);
 
     const url = `${process.env.REACT_APP_URL}/${generatedUuid}`;
-    // const pairsArray = chatHistory.map((message) => {
-    //   const parts = message.split("\n");
-    //   return { prompt: parts[0] };
-    // });
   
     const requestData = {
       method: "POST",
       body: JSON.stringify({
         prompt: prompt,
-        data:[chatHistory]
+        data: [chatHistory],
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -70,12 +66,18 @@ function App() {
 
     try {
       const response = await fetch(url, requestData);
+      if (!response.ok) {
+        throw new Error(`Request failed with status: ${response.status}`);
+      }
       console.log(response);
       const responseData = await response.text();
       console.log(responseData);
       setChatHistory((prevHistory) => [...prevHistory, responseData]);
     } catch (error) {
       console.error("Error fetching data:", error.message);
+      setErrorMessage(
+        "An error occurred while fetching data. Refresh ! Please try again later."
+      );
     }
 
     setIsFetching(false);
@@ -108,19 +110,21 @@ function App() {
         <div className="messages">
           <h2>JustAskHim</h2>
           <h4>How can i help you via message...</h4>
-          {chatHistory.map((message, index) => {
-            const parts = message.split("\n",2);
 
+          {chatHistory.map((message, index) => {
+            const parts = message.split("\n");
+            const firstPart = parts[0];
+            const secondPart = parts.slice(1).join("\n");
             return (
               <div key={index} className="message-container">
                 <div className="prompt">
-                  <pre className="que">{parts[0]}</pre>
+                  <pre className="que">{firstPart}</pre>
                   <FaUserCircle className="user-icon" />
                 </div>
                 <div className="ab">
                   <div className="response">
                     <pre className="ans">
-                      <FaCross /> {parts[1]}
+                      <FaCross /> {secondPart}
                     </pre>
                   </div>
                 </div>
@@ -128,6 +132,7 @@ function App() {
             );
           })}
           {isFetching && <Skeleton active />}
+          {errorMessage && <p>{errorMessage}</p>}
         </div>
       </div>
       <Row gutter={16} className="sg-main">
