@@ -6,6 +6,7 @@ import { Button, message, Popconfirm, Skeleton } from "antd";
 import { v4 as uuidv4 } from "uuid";
 import { Input } from "antd";
 import { Col, Row } from "antd";
+import { BsArrowUpRight } from "react-icons/bs";
 
 function App() {
   const [chatHistory, setChatHistory] = useState([]);
@@ -15,20 +16,23 @@ function App() {
   const [generatedUuid, setGeneratedUuid] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
+  /// FOR PROMPT SUGGETIONS
   const predefinedSuggestions = [
-    "How do scholars approach interpreting prophetic passages in the Bible ?",
+    "How bible helpfull to every people ?",
     "What does the Bible say about helping the poor and needy ? ",
     "How does truth and karma works? ",
+    "How bible helpfull to every people ?",
   ];
   const generateSuggestions = (input) => {
     const filteredSuggestions = predefinedSuggestions.filter((question) =>
       question.toLowerCase().includes(input.toLowerCase())
     );
-    // Limit the number of suggestions to 3
+
     const limitedSuggestions = filteredSuggestions.slice(0, 3);
     setSuggestions(limitedSuggestions);
   };
 
+  /// FOR GENERATE CHAT UUID AND STORE IT
   useEffect(() => {
     const storedChatHistory = localStorage.getItem("chatHistory");
     if (storedChatHistory) {
@@ -40,7 +44,7 @@ function App() {
     } else {
       const newUuid = uuidv4();
       setGeneratedUuid(newUuid);
-      localStorage.setItem("generatedUuid", newUuid); // Store the UUID in local storage
+      localStorage.setItem("generatedUuid", newUuid);
     }
   }, []);
 
@@ -48,11 +52,12 @@ function App() {
     localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
   }, [chatHistory]);
 
+  /// FOR SEND USERS PROMPTS TO BACK-END\
   const fetchData = async () => {
     setIsFetching(true);
 
     const url = `${process.env.REACT_APP_URL}/${generatedUuid}`;
-  
+
     const requestData = {
       method: "POST",
       body: JSON.stringify({
@@ -124,7 +129,8 @@ function App() {
                 <div className="ab">
                   <div className="response">
                     <pre className="ans">
-                      <FaCross /> {secondPart}
+                      <FaCross />
+                      {secondPart}
                     </pre>
                   </div>
                 </div>
@@ -144,7 +150,7 @@ function App() {
                 setSuggestions([]); // Clear suggestions when a suggestion is clicked
               }}
               className="suggestion-card">
-              {suggestion}
+              {suggestion} <BsArrowUpRight />
             </div>
           </Col>
         ))}

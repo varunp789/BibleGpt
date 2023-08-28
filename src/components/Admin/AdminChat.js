@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./admin.css";
 import { Button, Modal, Popconfirm, Input } from "antd";
 import { toast } from "react-toastify";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AdminChat = () => {
   const [adminData, setAdminData] = useState([]);
@@ -17,21 +17,20 @@ const AdminChat = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
+  // FOR FETCH USERS DATA ON ADMIN SIDE
+
   const fetchAdminData = async () => {
     try {
       const res = await fetch(`${process.env.REACT_APP_URL}/admin/all`);
       const resData = await res.json();
       console.log("hello", resData);
-      // if (Array.isArray(resData)) {
       setAdminData(resData);
-      // }else{
-      // console.log("invalid json in admin chat")
-      // }
     } catch (error) {
       console.error("Error fetching admin data:", error);
     }
   };
-  // console.log(adminData);
+
+  // ADD PROMPT AND ANSWERS TO PINECONE DATABASE
 
   const addData = async () => {
     setAdding(true);
@@ -50,7 +49,6 @@ const AdminChat = () => {
       const response = await fetch(API, reqData);
       const responseAdminData = await response.text();
       console.log(responseAdminData);
-      // Refresh the prompt list after adding
       fetchAdminData();
     } catch (error) {
       console.error("Error fetching data:", error.message);
@@ -61,6 +59,8 @@ const AdminChat = () => {
     setState(!state);
     toast.success("added successfully");
   };
+
+  // FOR DELETE UPDATED PROMPT
 
   const deletePrompt = async (id) => {
     setDeleting(true);
@@ -82,6 +82,9 @@ const AdminChat = () => {
       setDeleting(false);
     }
   };
+
+  // FOR UPDATE PROMPT AND ANSWER ONLY
+
   const updatePrompt = async (id) => {
     setUpdating(true);
     try {
@@ -128,8 +131,8 @@ const AdminChat = () => {
     fetchAdminData();
   }, [state]);
   const handlechat = () => {
-    navigate('/about')
-  }
+    navigate("/about");
+  };
 
   return (
     <div>
@@ -160,9 +163,6 @@ const AdminChat = () => {
         <Button onClick={handlechat}>All Users Chat History</Button>
       </div>
       <div>
-        {/* {adminData.map((entry)=>(
-          <div key={entry.u_id}> */}
-
         <table className="admin-table">
           <thead>
             <tr className="admin-tr">
@@ -226,8 +226,6 @@ const AdminChat = () => {
             ))}
           </tbody>
         </table>
-        {/* </div> */}
-        {/* ))} */}
       </div>
     </div>
   );
