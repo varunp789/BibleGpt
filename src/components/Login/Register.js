@@ -10,6 +10,9 @@ const App = () => {
   const [addEmail, setAddemail] = useState("");
   const [addCheckPassword, setAddcheckpassword] = useState("");
   const navigate = useNavigate()
+
+  /// FOR ADMIN REGISTRATION
+
   const onFinish = async (values) => {
     const API = `${process.env.REACT_APP_URL}/admin/register`;
     const reqData = {

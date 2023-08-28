@@ -44,6 +44,7 @@
   border-radius: 10px;
 }
 .messages::-webkit-scrollbar-thumb {
+  overflow-anchor: none;
   background: #4c7bad;
   border-radius: 10px;
 }
@@ -230,8 +231,22 @@ h5 {
 }
 .suggestion-card {
   height: 70% !important;
-  border: 1px solid rgb(114, 196, 250);
+  /* border: 1px solid rgb(114, 196, 250); */
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+
   padding: 4px 4px 4px 4px;
   border-radius: 10px;
   justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .chat-container {
+    width: 90%; /* Adjust the width for smaller screens */
+    margin-top: 50px; /* Adjust the margin for smaller screens */
+  }
+  
+  .scroll-to-bottom {
+    bottom: 10px; /* Adjust the position for smaller screens */
+    right: 10px; /* Adjust the position for smaller screens */
+  }
 }
