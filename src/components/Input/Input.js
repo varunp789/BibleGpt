@@ -52,7 +52,7 @@ function App() {
     localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
   }, [chatHistory]);
 
-  /// FOR SEND USERS PROMPTS TO BACK-END\
+  /// FOR SEND USERS PROMPTS TO BACK-END
   const fetchData = async () => {
     setIsFetching(true);
 
@@ -71,6 +71,7 @@ function App() {
 
     try {
       const response = await fetch(url, requestData);
+
       if (!response.ok) {
         throw new Error(`Request failed with status: ${response.status}`);
       }
@@ -119,7 +120,13 @@ function App() {
           {chatHistory.map((message, index) => {
             const parts = message.split("\n");
             const firstPart = parts[0];
-            const secondPart = parts.slice(1).join("\n");
+            const secondPart = parts.slice(1).join("");
+
+            const chunkSize = 10;
+            const chunkedSecondPart = [];
+            for (let i = 0; i < secondPart.length; i += chunkSize) {
+              chunkedSecondPart.push(secondPart.slice(i, i + chunkSize));
+            }
             return (
               <div key={index} className="message-container">
                 <div className="prompt">
@@ -129,8 +136,10 @@ function App() {
                 <div className="ab">
                   <div className="response">
                     <pre className="ans">
-                      <FaCross />
-                      {secondPart}
+                      <FaCross /> {/* Render each chunk of the secondPart */}
+                      {chunkedSecondPart.map((chunk, chunkIndex) => (
+                        <span key={chunkIndex}>{chunk}</span>
+                      ))}
                     </pre>
                   </div>
                 </div>
