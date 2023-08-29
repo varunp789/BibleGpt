@@ -17,7 +17,7 @@ const AdminChat = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
-  // FOR FETCH USERS DATA ON ADMIN SIDE
+  /// FOR FETCH USERS DATA ON ADMIN SIDE
 
   const fetchAdminData = async () => {
     try {
@@ -30,7 +30,7 @@ const AdminChat = () => {
     }
   };
 
-  // ADD PROMPT AND ANSWERS TO PINECONE DATABASE
+  /// ADD PROMPT AND ANSWERS TO PINECONE DATABASE
 
   const addData = async () => {
     setAdding(true);
@@ -60,7 +60,7 @@ const AdminChat = () => {
     toast.success("added successfully");
   };
 
-  // FOR DELETE UPDATED PROMPT
+  /// FOR DELETE UPDATED PROMPT
 
   const deletePrompt = async (id) => {
     setDeleting(true);
@@ -83,7 +83,7 @@ const AdminChat = () => {
     }
   };
 
-  // FOR UPDATE PROMPT AND ANSWER ONLY
+  /// FOR UPDATE PROMPT AND ANSWER ONLY
 
   const updatePrompt = async (id) => {
     setUpdating(true);
