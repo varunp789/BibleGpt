@@ -26,12 +26,12 @@ const Navbar = () => {
         </Link>
       </h4>
       <h4>
-        <Link to="/chat" className="link">
+        <Link to="/chat-history" className="link">
           History
         </Link>
       </h4>
       <h4>
-        <Link to="/contact" className="link">
+        <Link to="/contact-us" className="link">
           Contact
         </Link>
       </h4>

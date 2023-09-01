@@ -17,11 +17,12 @@ const AdminChat = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
-  /// FOR FETCH USERS DATA ON ADMIN SIDE
+  /// FOR admin provided PROMPT & ANSWER  data
 
   const fetchAdminData = async () => {
     try {
       const res = await fetch(`${process.env.REACT_APP_URL}/admin/all`);
+      console.log(res)
       const resData = await res.json();
       console.log("hello", resData);
       setAdminData(resData);

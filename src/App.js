@@ -30,14 +30,13 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/contact-us" element={<Contact />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/check" element={<Navigate replace to="/login" />}></Route>
         <Route path="/" element={<Input />}></Route>
-        <Route path="/chat" element={<Chat />}></Route>
+        <Route path="/chat-history" element={<Chat />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="*" element={<Notfound />}></Route>
-
         <Route element={<PrivateRoutes />}>
           <Route path="/admin" element={<AdminChat />}></Route>
           <Route path="/About" element={<About />}></Route>
