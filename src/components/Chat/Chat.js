@@ -27,6 +27,7 @@ const Chat = () => {
 
       if (Array.isArray(responseData.dataEntries)) {
         setApiData(responseData.dataEntries);
+        console.log(responseData.dataEntries);
       } else {
         console.error("Invalid API response format");
       }

@@ -122,11 +122,11 @@ function App() {
             const firstPart = parts[0];
             const secondPart = parts.slice(1).join("");
 
-            const chunkSize = 10;
-            const chunkedSecondPart = [];
-            for (let i = 0; i < secondPart.length; i += chunkSize) {
-              chunkedSecondPart.push(secondPart.slice(i, i + chunkSize));
-            }
+            // const chunkSize = 1;
+            // const chunkedSecondPart = [];
+            // for (let i = 0; i < secondPart.length; i += chunkSize) {
+            //   chunkedSecondPart.push(secondPart.slice(i, i + chunkSize));
+            // }
             return (
               <div key={index} className="message-container">
                 <div className="prompt">
@@ -136,10 +136,10 @@ function App() {
                 <div className="ab">
                   <div className="response">
                     <pre className="ans">
-                      <FaCross /> {/* Render each chunk of the secondPart */}
-                      {chunkedSecondPart.map((chunk, chunkIndex) => (
+                      <FaCross /> {secondPart}
+                      {/* {chunkedSecondPart.map((chunk, chunkIndex) => (
                         <span key={chunkIndex}>{chunk}</span>
-                      ))}
+                      ))} */}
                     </pre>
                   </div>
                 </div>
