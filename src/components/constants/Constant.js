@@ -5,10 +5,10 @@ export const input = {
     "An error occurred while fetching data. Refresh ! Please try again later.",
 };
 export const presuggestions = {
-  q1: "How bible helpfull to every people ?",
-  q2: "What does the Bible say about helping the poor and needy ?",
-  q3: "How does truth and karma works? ",
-  q4: "How bible helpfull to every people ?",
+  Question1: "How bible helpfull to every people ?",
+  Question2: "What does the Bible say about helping the poor and needy ?",
+  Question3: "How does truth and karma works? ",
+  Question4: "How bible helpfull to every people ?",
 };
 export const Historytable = {
   col1: "prompt",

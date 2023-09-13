@@ -20,10 +20,10 @@ function App() {
   /// FOR PROMPT SUGGETIONS
   
   const predefinedSuggestions = [
-    `${presuggestions.q1}`,
-    `${presuggestions.q2}`,
-    `${presuggestions.q3}`,
-    `${presuggestions.q4}`,
+    `${presuggestions.Question1}`,
+    `${presuggestions.Question2}`,
+    `${presuggestions.Question3}`,
+    `${presuggestions.Question4}`,
   ];
   const generateSuggestions = (input) => {
     const filteredSuggestions = predefinedSuggestions.filter((question) =>
