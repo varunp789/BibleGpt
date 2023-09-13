@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./chat.css";
+import { Historytable} from "../constants/Constant";
 
 const Chat = () => {
   const [apiData, setApiData] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [id, setId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -14,20 +16,19 @@ const Chat = () => {
     } else {
       console.log("Id not in localStorage");
       alert("Could not find id");
-    }
+    } 
   }, []);
-  // const GetId = localStorage.getItem("generatedUuid");
-  console.log(id);
+  // console.log("UserId:",id);
+
+  /// USERS CHAT HISTORY
+
   const fetchApiData = async (id) => {
     try {
       const response = await fetch(`${process.env.REACT_APP_URL}/${id}`);
-      console.log(response);
       const responseData = await response.json();
-      console.log(responseData);
 
       if (Array.isArray(responseData.dataEntries)) {
         setApiData(responseData.dataEntries);
-        console.log(responseData.dataEntries);
       } else {
         console.error("Invalid API response format");
       }
@@ -48,9 +49,8 @@ const Chat = () => {
           <table>
             <thead>
               <tr>
-                <th>Prompt</th>
-                {/* <th>Prompt Time</th> */}
-                <th>Response</th>
+                <th>{`${Historytable.col1}`}</th>
+                <th>{`${Historytable.col2}`}</th>
               </tr>
             </thead>
             <tbody>

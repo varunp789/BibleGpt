@@ -3,6 +3,7 @@ import "./Register.css";
 import { Button, Form, Input } from "antd";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { register } from "../constants/Constant";
 
 const App = () => {
   const [addUsername, setAddusername] = useState("");
@@ -43,7 +44,7 @@ const App = () => {
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
-    toast.error("Invalid Credentials / Input proper credentials")
+    toast.error(`${register.finisherror}`)
   };
 
   return (
@@ -73,7 +74,7 @@ const App = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your username!",
+                message: `${register.usermessage}`,
               },
             ]}>
             <Input
@@ -89,7 +90,7 @@ const App = () => {
               {
                 type: "email",
                 required: true,
-                message: "Please input your Email",
+                message: `${register.emailmessage}`,
               },
             ]}>
             <Input
@@ -104,7 +105,7 @@ const App = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your password!",
+                message: `${register.passwordmessage}`,
               },
             ]}>
             <Input.Password
@@ -119,7 +120,7 @@ const App = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your Confirm-password!",
+                message: `${register.confirmPasswordMessage}`,
               },
             ]}>
             <Input.Password
