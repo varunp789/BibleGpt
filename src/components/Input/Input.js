@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Input } from "antd";
 import { Col, Row } from "antd";
 import { BsArrowUpRight } from "react-icons/bs";
+import { input, presuggestions } from "../constants/Constant";
 
 function App() {
   const [chatHistory, setChatHistory] = useState([]);
@@ -17,11 +18,12 @@ function App() {
   const [suggestions, setSuggestions] = useState([]);
 
   /// FOR PROMPT SUGGETIONS
+  
   const predefinedSuggestions = [
-    "How bible helpfull to every people ?",
-    "What does the Bible say about helping the poor and needy ? ",
-    "How does truth and karma works? ",
-    "How bible helpfull to every people ?",
+    `${presuggestions.q1}`,
+    `${presuggestions.q2}`,
+    `${presuggestions.q3}`,
+    `${presuggestions.q4}`,
   ];
   const generateSuggestions = (input) => {
     const filteredSuggestions = predefinedSuggestions.filter((question) =>
@@ -33,6 +35,7 @@ function App() {
   };
 
   /// FOR GENERATE CHAT UUID AND STORE IT
+  
   useEffect(() => {
     const storedChatHistory = localStorage.getItem("chatHistory");
     if (storedChatHistory) {
@@ -53,6 +56,7 @@ function App() {
   }, [chatHistory]);
 
   /// FOR SEND USERS PROMPTS TO BACK-END
+  
   const fetchData = async () => {
     setIsFetching(true);
 
@@ -82,7 +86,7 @@ function App() {
     } catch (error) {
       console.error("Error fetching data:", error.message);
       setErrorMessage(
-        "An error occurred while fetching data. Refresh ! Please try again later."
+        `${input.error}`
       );
     }
 
@@ -114,19 +118,14 @@ function App() {
     <>
       <div className="chat-container">
         <div className="messages">
-          <h2>JustAskHim</h2>
-          <h4>How can i help you via message...</h4>
+          <h2>{`${input.h2}`}</h2>
+          <h4>{`${input.h4}`}</h4>
 
           {chatHistory.map((message, index) => {
             const parts = message.split("\n");
             const firstPart = parts[0];
             const secondPart = parts.slice(1).join("");
 
-            // const chunkSize = 1;
-            // const chunkedSecondPart = [];
-            // for (let i = 0; i < secondPart.length; i += chunkSize) {
-            //   chunkedSecondPart.push(secondPart.slice(i, i + chunkSize));
-            // }
             return (
               <div key={index} className="message-container">
                 <div className="prompt">
@@ -137,9 +136,6 @@ function App() {
                   <div className="response">
                     <pre className="ans">
                       <FaCross /> {secondPart}
-                      {/* {chunkedSecondPart.map((chunk, chunkIndex) => (
-                        <span key={chunkIndex}>{chunk}</span>
-                      ))} */}
                     </pre>
                   </div>
                 </div>
@@ -156,7 +152,8 @@ function App() {
             <div
               onClick={() => {
                 setPrompt(suggestion);
-                setSuggestions([]); // Clear suggestions when a suggestion is clicked
+                // Clear suggestions when a suggestion is clicked
+                setSuggestions([]);
               }}
               className="suggestion-card">
               {suggestion} <BsArrowUpRight />

@@ -5,13 +5,15 @@ import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { login } from "../constants/Constant";
 
 const App = () => {
   const [addLoginemail, setaddLoginEmail] = useState("");
   const [addLoginpassword, setAddLoginPassword] = useState("");
   const navigate = useNavigate();
 
-  // User Login info
+  /// User Login info
+
   const handleSubmit = async () => {
     const API = `${process.env.REACT_APP_URL}/admin/login`;
     const reqData = {
@@ -34,11 +36,11 @@ const App = () => {
         localStorage.setItem("isLogging", true);
         navigate("/admin");
       } else {
-        toast.error("Login failed");
+        toast.error(`${login.errorfailed}`);
       }
     } catch (error) {
       console.error("failed to Login");
-      toast.warning("failed to login");
+      toast.warning(`${login.warning}`);
     }
     setaddLoginEmail("");
     setAddLoginPassword("");
@@ -55,23 +57,23 @@ const App = () => {
         onFinish={handleSubmit}>
         <Form.Item
           name="Email"
-          rules={[{ required: true, message: "Please input your Username!" }]}>
+          rules={[{ required: true, message: `${login.form.usermsg}` }]}>
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Email"
+            placeholder={`${login.form.email}`}
             value={addLoginemail}
             onChange={(e) => setaddLoginEmail(e.target.value)}
           />
         </Form.Item>
         <Form.Item
           name="password"
-          rules={[{ required: true, message: "Please input your Password!" }]}>
+          rules={[{ required: true, message: `${login.form.passmsg}` }]}>
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             value={addLoginpassword}
             onChange={(e) => setAddLoginPassword(e.target.value)}
-            type="password"
-            placeholder="Password"
+            type={`${login.form.type}`}
+            placeholder={`${login.form.password}`}
           />
         </Form.Item>
         <Form.Item>
